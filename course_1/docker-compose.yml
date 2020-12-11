@@ -4,5 +4,8 @@ services:
   node:
     build: ./code
     command: npm start
+    volumes:
+      - ./code/:/code/
+      - /code/node_modules
     ports:
       - 3000:3000
