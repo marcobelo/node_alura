@@ -1,4 +1,4 @@
-version: "3"
+version: "3.1"
 
 services:
   node:
@@ -9,6 +9,10 @@ services:
       - /code/node_modules
     ports:
       - 3000:3000
+    depends_on:
+      - mysql_db
+    links:
+      - mysql_db
 
   mysql_db:
     image: mysql
@@ -16,11 +20,10 @@ services:
       - db_data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: course1
-      MYSQL_DATABASE: course_1
-      MYSQL_USER: course1
-      MYSQL_PASSWORD: course1
-
+      MYSQL_DATABASE: course1
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
     ports:
       - 3306:3306
 
